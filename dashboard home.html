@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Lengkap</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        overflow: hidden;
+        color: white;
+    }
+
+    /* Background video */
+    #bg-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        filter: brightness(50%);
+    }
+
+    /* MENU ATAS */
+    nav {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 20px;
+        background: rgba(0,0,0,0.5);
+        padding: 10px 25px;
+        border-radius: 25px;
+        z-index: 1000;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    /* Isi halaman */
+    .page {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 500px;
+        background: rgba(0,0,0,0.4);
+        padding: 20px;
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+        text-align: center;
+    }
+
+    .active {
+        display: block;
+    }
+
+    /* Tombol sosmed */
+    .sosmed a {
+        display: block;
+        margin: 10px 0;
+        padding: 12px;
+        background: rgba(255,255,255,0.2);
+        color: white;
+        text-decoration: none;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+
+    /* GAME Tic Tac Toe */
+    .board {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        margin-top: 15px;
+    }
+
+    .cell {
+        background: rgba(255,255,255,0.2);
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- Background video -->
+<video autoplay muted loop id="bg-video">
+  <source src="video.mp4" type="video/mp4">
+</video>
+
+<!-- MENU ATAS -->
+<nav>
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('game')">Game</a>
+    <a onclick="showPage('profil')">Profil</a>
+    <a onclick="showPage('contact')">Contact</a>
+    <a href="index.html">Logout</a>
+</nav>
+
+<!-- ================== HALAMAN HOME ================== -->
+<div id="home" class="page active">
+    <h2>👋 Selamat Datang di Dashboard Saya!</h2>
+    <p>Halo! Ini adalah halaman utama dashboard yang sudah saya buat.
+Di sini kamu bisa mengakses berbagai menu seperti Game, Profil, dan Contact hanya dengan sekali klik.</p>
+    <p>Dashboard ini dirancang agar mudah digunakan dan nyaman dilihat, sehingga kamu bisa menjelajahi setiap fitur dengan cepat dan praktis.
+Silakan pilih menu di atas untuk mulai mencoba semua fitur yang tersedia.
+</p>
+</div>
+
+<!-- ================== HALAMAN GAME ================== -->
+<div id="game" class="page">
+    <h2>🎮 Tic Tac Toe</h2>
+    <div class="board">
+        <div class="cell" onclick="clickCell(this)"></div>
+        <div class="cell" onclick="clickCell(this)"></div>
+        <div class="cell" onclick="clickCell(this)"></div>
+        <div class="cell" onclick="clickCell(this)"></div>
+        <div class="cell" onclick="clickCell(this)"></div>
+        <div class="cell" onclick="clickCell(this)"></div>
+        <div class="cell" onclick="clickCell(this)"></div>
+        <div class="cell" onclick="clickCell(this)"></div>
+        <div class="cell" onclick="clickCell(this)"></div>
+    </div>
+</div>
+
+<!-- ================== HALAMAN PROFIL ================== -->
+<div id="profil" class="page">
+    <h2>👤 Profil Saya</h2>
+    <p>Nama: Fahri ardiansyah</p>
+    <p>Umur: 17 tahun</p>
+    <p>Hobi: Bermain Game</p>
+    <p>Cita-cita: Menjadi Trader Muda</p>
+</div>
+
+<!-- ================== HALAMAN CONTACT ================== -->
+<div id="contact" class="page">
+    <h2>⚡Media Sosial Kamu⚡</h2>
+
+    <div class="sosmed">
+        <a href="https://www.instagram.com/fahriiardnsyh?igsh=MTNoYWl1bW9kamx2eA==">Instagram🥶</a>
+        <a href="https://wa.me/qr/UVFPYQCCY2HCM1">WhatsApp🍫</a>
+        <a href="https://www.tiktok.com/@707.rayleigh?_r=1&_t=ZS-91fkDH8P68e">TikTok😜</a>
+    </div>
+<body>
+    
+    <audio controls autoplay loop>
+      <source src="audio.mp3" type="audio/mpeg">
+      Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+</body>
+</html>
+    
+<script>
+    function showPage(page) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(page).classList.add('active');
+    }
+
+    // GAME TIC TAC TOE
+    let player = "X";
+    function clickCell(cell) {
+        if (cell.innerHTML === "") {
+            cell.innerHTML = player;
+            player = (player === "X") ? "O" : "X";
+        }
+    }
+</script>
+
+</body>
+</html>
